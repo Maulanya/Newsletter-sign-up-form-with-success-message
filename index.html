@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @font-face {
+        font-family: "Roboto-Bold";
+        src: url("./assets/fonts/Roboto-Bold.ttf");
+      }
+      @font-face {
+        font-family: "Roboto-Regular";
+        src: url("./assets/fonts/Roboto-Regular.ttf");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        box-sizing: border-box;
+      }
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: hsl(234, 29%, 20%);
+      }
+
+      #MobileImage {
+        display: none;
+      }
+
+      .box {
+        width: 55%;
+        height: 600px;
+        border-radius: 25px;
+        padding: 20px;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+      }
+      .box .content {
+        height: 400px;
+        margin: 50px 50px 0 40px;
+        font-family: "Roboto-Regular";
+        font-weight: 400;
+      }
+      .box .content h1 {
+        font-size: 50px;
+        font-family: "Roboto-Bold";
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .box .content p {
+        font-size: 16px;
+      }
+      .box .check {
+        margin-top: 20px;
+        font-size: 16px;
+        display: grid;
+        gap: 20px;
+      }
+      .box .check p {
+        display: flex;
+        align-items: center;
+      }
+      .box .check p > img {
+        margin-right: 5px;
+      }
+      .input {
+        margin-top: 50px;
+        width: 100%;
+      }
+      .input label {
+        font-family: "Roboto-Regular";
+        font-size: 13px;
+      }
+      .input input[type="email"] {
+        width: 100%;
+        height: 40px;
+        margin-top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        border: 1px solid hsl(235, 18%, 26%);
+        border-radius: 5px;
+      }
+
+      /* .input input[type="email"]:valid {
+        outline: none;
+        border-color: red;
+      } */
+
+      .btn {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        margin-top: 20px;
+        border: none;
+        background-color: hsl(234, 29%, 20%);
+        color: white;
+        border-radius: 5px;
+      }
+
+      .btn:hover {
+        cursor: pointer;
+      }
+
+      .PopUpContainer {
+        width: 100%;
+        height: 100vh;
+        background-color: hsl(234, 29%, 20%);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+
+      .PopUpContainer .PopUpContent {
+        height: max-content;
+        width: 30%;
+        background: white;
+        padding: 40px 50px 40px 50px;
+        border-radius: 25px;
+        flex-direction: column;
+      }
+
+      .PopUpContainer .PopUpContent h1 {
+        font-size: 50px;
+        margin-top: 30px;
+        font-family: "Roboto-Bold";
+        font-weight: 700;
+      }
+
+      .PopUpContainer .PopUpContent p {
+        font-size: 16px;
+        margin-top: 20px;
+        font-family: "Roboto-Regular";
+        font-weight: 400;
+      }
+
+      @media (min-width: 375px) and (max-width: 1440px) {
+        #DesktopImage {
+          display: none;
+        }
+        #MobileImage {
+          display: block;
+        }
+
+        .box {
+          width: 100%;
+          height: 100vh;
+          border-radius: 0;
+          padding: 0 0 50px 0 !important;
+          background: white;
+          display: flex;
+          flex-direction: column;
+        }
+        .box .content {
+          margin-left: 20px;
+          margin-top: 30px;
+          width: 90%;
+        }
+
+        .box .content h1 {
+          font-size: 30px;
+        }
+
+        .PopUpContainer .PopUpContent {
+          height: 100vh;
+          width: 100%;
+          border-radius: 0;
+          display: flex;
+          padding: 20px;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .PopUpContainer .PopUpContent h1 {
+          width: 80%;
+          font-size: 30px;
+        }
+
+        .PopUpContainer .PopUpContent .btn {
+          position: relative;
+          bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <div class="box">
+        <img
+          src="./assets/images/illustration-sign-up-mobile.svg"
+          alt=""
+          id="MobileImage"
+        />
+        <div class="content">
+          <h1>Stay Updated!</h1>
+          <p>Join 60,000+ product managers receiving monthly updates on:</p>
+          <div class="check">
+            <p>
+              <img src="./assets/images/icon-list.svg" alt="" />Product
+              discovery and building what matters
+            </p>
+            <p>
+              <img src="./assets/images/icon-list.svg" alt="" />Measuring to
+              ensure updates are a success
+            </p>
+            <p>
+              <img src="./assets/images/icon-list.svg" alt="" />And much more!
+            </p>
+          </div>
+          <form method="POST" class="input">
+            <div
+              style="display: flex; width: 100%; justify-content: space-between"
+            >
+              <label for="email">Email address</label>
+              <p
+                style="color: red; font-size: 13px; display: none"
+                id="EmailRequired"
+              >
+                Verify Email Required
+              </p>
+            </div>
+            <input type="email" name="email" id="email" required />
+            <button class="btn" id="subscribe">
+              Subscribe to monthly newsletter
+            </button>
+          </form>
+        </div>
+        <img
+          src="./assets/images/illustration-sign-up-desktop.svg"
+          alt=""
+          id="DesktopImage"
+        />
+      </div>
+    </section>
+
+    <!-- Sign-up form end -->
+    <div class="PopUpContainer">
+      <div class="PopUpContent">
+        <div class="content">
+          <img src="./assets/images/icon-success.svg" alt="" />
+          <h1>Thanks for subscribing!</h1>
+          <p>
+            A Confirmation email has been sent to
+            <span
+              id="SentToEmail"
+              style="font-family: 'Roboto-Bold'; font-weight: 400"
+              >Email</span
+            >. Please open it and click the button inside to confirm your
+            subscription.
+          </p>
+        </div>
+        <button class="btn" id="Back">Dismiss message</button>
+      </div>
+    </div>
+
+    <script>
+      const email = document.querySelector('input[type="email"]');
+      const EmailRequired = document.getElementById("EmailRequired");
+      const PopUp = document.querySelector(".PopUpContainer");
+      const MainContainer = document.querySelector(".container");
+      const btnSubscribe = document.getElementById("subscribe");
+      const btnBack = document.getElementById("Back");
+      const EmailTo = document.getElementById("SentToEmail");
+
+      btnSubscribe.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (email.validity.valid) {
+          PopUp.style.display = "flex";
+          MainContainer.style.display = "none";
+          EmailTo.innerHTML = email.value;
+        } else {
+          email.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
+          email.style.borderColor = "red";
+          EmailRequired.style.display = "block";
+          e.target.setCustomValidity(" ");
+        }
+      });
+
+      btnBack.addEventListener("click", (e) => {
+        e.preventDefault();
+        PopUp.style.display = "none";
+        MainContainer.style.display = "flex";
+      });
+    </script>
+
+    <!-- Stay updated!
+
+  Join 60,000+ product managers receiving monthly updates on:
+
+  Product discovery and building what matters
+  Measuring to ensure updates are a success
+  And much more!
+
+  Email address
+  email@company.com
+
+  Subscribe to monthly newsletter
+
+  Sign-up form end -->
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+  </body>
+</html>
